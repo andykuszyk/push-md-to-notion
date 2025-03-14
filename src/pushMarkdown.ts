@@ -14,6 +14,7 @@ import { retry, RetryError } from './retry';
 
 export async function pushUpdatedMarkdownFiles() {
   const markdownFiles = getChangedMdFiles();
+  console.log('Found changed markdown files: ', markdownFiles);
   const fileFailures: { file: string; message: string }[] = [];
   for (const mdFileName of markdownFiles) {
     const res = await retry(() => pushMarkdownFile(mdFileName), {
